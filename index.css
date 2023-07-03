@@ -1,16 +1,129 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box; // this makes sure that the width of the border is included in the width of the element
-} // this helps solve the problem of the width of the border being added to the width of the element which can cause problems with the layout of the page, margin and padding are also included in this
+  /* this makes sure that the width of the border is included in the width of the element. this helps solve the problem of the width of the border being added to the width of the element which can cause problems with the layout of the page, margin and padding are also included in this*/
+  box-sizing: border-box;
+}
 
+/*  // :root is the root element of the document, it is the html element, we can use this to set css variables, css variables are variables that we can use in css, we can use this to set the color of the logo and the background gradient */
 :root {
+  --primary-color: #2d7dff;
 }
 
 body {
+  /* this is the background gradient for the page, the convenient way to genetrate gradient is cssgradient.io */
   background: linear-gradient(
     220deg,
     rgba(189, 0, 255, 1) 0%,
     rgba(0, 163, 255, 1) 100%
   );
-} // this is the background gradient for the page, the convenient way to genetrate gradient is cssgradient.io
+  /* set 100vh because we want the gradient to cover the whole page, there may be repeated gradients if the page is longer than the viewport, but we can fix that with background-attachment: fixed */
+  height: 100vh;
+  /* set fixed so that the gradient doesn't move when we scroll, this is to prevent repeated gradients */
+  background-attachment: fixed;
+  font-family: 'Poppins';
+}
+
+.container {
+  /* set margin to 1em on the top and bottom and 0.5em on the left and right */
+  margin: 1em 0.5em;
+  /* set height to 100% - 2em because we want the container to be 100% of the height of the page minus the margin */
+  height: calc(100% - 2em);
+}
+
+section {
+  background: #221f26 url('./bg.jpg');
+  /* cover makes sure that the background image covers the whole section */
+  background-size: cover;
+  height: 100%;
+  /* // this is to make the background image blend with the background color */
+  background-blend-mode: screen;
+  /* // this is to move the background image to the left */
+  background-position: -100px;
+  height: 100%;
+  padding: 2em;
+}
+
+nav {
+  display: none;
+}
+
+.logo {
+  /* // --primary-color is a css variable, we can use this to change the color of the logo */
+  color: var(--primary-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  /* // -0.1em means that the letters are closer together */
+  letter-spacing: -0.1em;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+header {
+  display: flex;
+}
+
+.menu-btn {
+  /* // this is to change the cursor to a pointer when we hover over the menu button */
+  cursor: pointer;
+}
+
+h1 {
+  /* // this is the fallback in case the clamp function doesn't work for older browsers */
+  font-size: 3rem;
+  /*  // to create fliud typography. clamp is a css function that takes 3 parameters, the first parameter is the minimum value, the second parameter is the value that is used when the viewport is at its smallest, the third parameter is the maximum value, this is to make sure that the font size is responsive. -0.875rem + 8.333vw is the formula to calculate the font size, we can use this formula to calculate the font size for different viewports */
+  font-size: clamp(2.5rem, -0.875rem + 8.333vw, 4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: white;
+  line-height: 89%;
+}
+
+.cv {
+  /* // this is to make the cv section a grid, this is so that we can center the cv section, we can also use flexbox to center the cv section */
+  display: grid;
+  place-items: center;
+  height: 80%; // setting to 80% not 100% because we want to leave some space at the bottom
+}
+
+.content p {
+  font-size: 2.1rem;
+  font-size: clamp(2rem, -0.875rem + 8.333vw, 3rem);
+  font-weight: 300;
+  line-height: 111%;
+  color: #847d93;
+  margin-top: 1.1em;
+}
+
+.cta {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 2.875em;
+  /* // inline-block will make the button take the width of the content, if we use block, the button will take the whole width of the page */
+  display: inline-block;
+  border: 1px solid #4d4d4d;
+  /* // calc is used to make sure that the padding on the left will have some room for a svg arrow icon // account for icon which is 1.5 em and padding which is 1.25em on the left and right*/
+  padding: 1.25em 1.25em 1.25em calc(2.5em + 1.5em);
+  position: relative;
+}
+
+/*   // :before is a pseudo element, this is to add a svg arrow icon to the button, we can also use an image for this, but using svg is better because we can change the color of the svg icon. In CSS, ::before creates a pseudo-element that is the first child of the selected element. It is often used to add cosmetic content to an element with the content property. It is inline by default. The ::before selector inserts something before the content of each selected element(s). */
+.cta:before {
+  /* // set to empty string because we don't want to add any content, we just want to add the svg icon */
+  content: '';
+  /* // this is to make sure that the svg icon is positioned relative to the button, if we don't set this, the svg icon will be positioned relative to the page */
+  position: absolute;
+  background: url('arrow.svg') no-repeat;
+  width: 1.5em;
+  height: 1.5em;
+  left: 1.25em;
+}
+
+.cta:hover {
+  /* // set the background color to the primary color when we hover over the button */
+  background: var(--primary-color);
+}
