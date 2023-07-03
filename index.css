@@ -1,0 +1,16 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box; // this makes sure that the width of the border is included in the width of the element
+} // this helps solve the problem of the width of the border being added to the width of the element which can cause problems with the layout of the page, margin and padding are also included in this
+
+:root {
+}
+
+body {
+  background: linear-gradient(
+    220deg,
+    rgba(189, 0, 255, 1) 0%,
+    rgba(0, 163, 255, 1) 100%
+  );
+} // this is the background gradient for the page, the convenient way to genetrate gradient is cssgradient.io
