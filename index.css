@@ -29,6 +29,7 @@ body {
   margin: 1em 0.5em;
   /* set height to 100% - 2em because we want the container to be 100% of the height of the page minus the margin */
   height: calc(100% - 2em);
+  display: flex;
 }
 
 section {
@@ -40,9 +41,10 @@ section {
   background-blend-mode: screen;
   /* // this is to move the background image to the left */
   background-position: -100px;
-  height: 100%;
   padding: 2em;
   border-radius: 13px;
+  /* // this is to make sure that the section takes up the whole width of the page */
+  flex: 1;
 }
 
 nav {
@@ -95,7 +97,8 @@ h1 {
   /* // this is to make the cv section a grid, this is so that we can center the cv section, we can also use flexbox to center the cv section */
   display: grid;
   place-items: center;
-  height: 80%; // setting to 80% not 100% because we want to leave some space at the bottom
+  /* // setting to 80% not 100% because we want to leave some space at the bottom */
+  height: 80%;
 }
 
 .content p {
@@ -190,4 +193,67 @@ nav ul li a:hover {
 .active:hover {
   /* // add a slighly lighter color when hovering */
   background: #4497ff;
+}
+
+@media only screen and (min-width: 700px) {
+  .left-col {
+    /* // this is to make the left column a flexbox, */
+    display: flex;
+  }
+
+  .content p {
+    width: 70%;
+  }
+}
+
+/* // add media query to make responsive for desktop */
+@media only screen and (min-width: 1000px) {
+  nav {
+    /* // unset will remove the position property */
+    position: unset;
+    /* // translateX(0) will move the nav bar to the right, this is so that the nav bar will be visible on desktop */
+    /* // adding !important will override the transform property important is in case there is js that is adding the transform property which will override the transform property that we set here*/
+    transform: translateX(0) !important;
+    border-radius: unset;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    height: 100%;
+  }
+  /* menu button no longer needed on desktop version */
+  .menu-btn,
+  .back-btn {
+    display: none;
+  }
+
+  ul {
+    margin-top: 4em;
+  }
+
+  header {
+    padding: 1.6em;
+  }
+
+  /* let menu float to left side of section content */
+  .container {
+    display: flex;
+    padding: 2em;
+  }
+  .logo {
+    text-align: left;
+  }
+
+  section {
+    border-radius: unset;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    width: 100%;
+    background-size: cover;
+    background-position: 0;
+    background-attachment: unset;
+  }
+  .content {
+    /* // justify-self is used to align the content to the left, it is used to align the content inside the grid item */
+    justify-self: left;
+    margin-left: 4em;
+  }
 }
