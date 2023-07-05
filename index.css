@@ -138,6 +138,12 @@ h1 {
   background: var(--primary-color);
 }
 
+nav {
+  /* // this will make nav hidden */
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
