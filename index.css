@@ -42,10 +42,20 @@ section {
   background-position: -100px;
   height: 100%;
   padding: 2em;
+  border-radius: 13px;
 }
 
 nav {
-  display: none;
+  /* display: none; */
+  /* // this is to make sure that the nav bar is fixed to the top of the page, if we don't set this, the nav bar will be at the top of the page when we scroll down */
+  position: fixed;
+  /* // this is to make sure that the nav bar is on top of the other elements */
+  z-index: 1;
+  background: #2c2931;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  max-width: 300px;
 }
 
 .logo {
@@ -126,4 +136,52 @@ h1 {
 .cta:hover {
   /* // set the background color to the primary color when we hover over the button */
   background: var(--primary-color);
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+nav ul li {
+  /* // this is to make sure that the list items take the whole width of the nav bar */
+  width: 100%;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  /* // this will allow us to set the padding and width of the list items */
+  display: block;
+  padding: 0.875em 5em 0.875em 4em;
+}
+
+nav ul li a:hover {
+  background: #413e47;
+}
+
+.back-btn {
+  /* // this is to flip the arrow icon, scaleX(-1) will flip the icon horizontally, scaleY(-1) will flip the icon vertically */
+  transform: scaleX(-1);
+  /* // padding for the top, right/left and bottom */
+  padding: 3em 4em 2em;
+  cursor: pointer;
+  /* // add a transition to the transform property, this is so that the icon will rotate when we hover over the icon, */
+  transition: transform 0.3s;
+}
+
+.back-btn:hover {
+  /* //add some interactions, this will add flip and move icon to the left a bit  */
+  transform: scaleX(-1) translateX(6px);
+}
+
+/* // this is to change the background color of the active link */
+.active {
+  background: var(--primary-color);
+}
+
+.active:hover {
+  /* // add a slighly lighter color when hovering */
+  background: #4497ff;
 }
